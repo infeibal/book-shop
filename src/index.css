@@ -2,22 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+
+  --bg-track: #edecf3;
+  --bg-thumb: white;
+  --bg-thumb-hover: rgb(154, 154, 154);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #edecf3;
+  background: var(--bg-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: white;
+  background: var(--bg-thumb);
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(154, 154, 154);
+  background: var(--bg-thumb-hover);
 }
 
 .cart::-webkit-scrollbar-track {

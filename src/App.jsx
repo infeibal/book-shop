@@ -1,47 +1,30 @@
-import { useEffect, useState } from "react";
-import { Header } from "./Components/Header";
-import { Products } from "./Components/Products";
-import { ModalCart } from "./Components/ModalCart";
-import { Footer } from "./Components/Footer";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { Home } from "./Components/Home";
+import { CardPage } from "./Components/CardPage";
+import { useEffect } from "react";
 
 export const App = () => {
-  const [isShowModal, setIsShowModal] = useState(false);
+  let location = useLocation();
 
-  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    if (location.pathname.includes("product/")) {
+      document.title = location.pathname
+        .split("product/")[1]
+        .split("%20")
+        .join(" ");
+    } else {
+      document.title = "Book Shop";
+    }
 
-  function getCardItems(value) {
-    setCartItems(value);
-  }
+    if (document.URL.includes("#footer")) {
+      window.location.href = "";
+    }
+  }, [location.pathname]);
 
   return (
-    <div
-      className={`overflow-x-hidden
-      bg-[#f3f2f7] min-w-screen min-h-screen flex flex-col items-center justify-center ${
-        isShowModal ? "bg-black" : ""
-      }`}
-    >
-      {isShowModal ? (
-        <ModalCart
-          cartItems={cartItems}
-          setCartItems={setCartItems}
-          setIsShowModal={setIsShowModal}
-        />
-      ) : null}
-      <div
-        className={`${
-          isShowModal
-            ? "min-w-screen opacity-40 pointer-events-none select-none"
-            : ""
-        }`}
-      >
-        <Header setIsShowModal={setIsShowModal} />
-        <Products
-          cartItems={cartItems}
-          setCartItems={setCartItems}
-          getCardItems={getCardItems}
-        />
-        <Footer />
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/product/:name" element={<CardPage location={location} />} />
+    </Routes>
   );
 };

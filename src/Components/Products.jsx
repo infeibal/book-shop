@@ -3,12 +3,11 @@ import { Card } from "./Card";
 import { Sort } from "./Sort";
 import books from "./data.json";
 
-export const Products = ({ getCardItems }) => {
+export const Products = ({ setCartItems }) => {
   const pageValue = 9;
   const [data, setData] = useState([]);
   const [page, setPage] = useState(pageValue);
   const [sortFilter, setSortFilter] = useState("Нет");
-  const [addInCard, setAddInCard] = useState([]);
 
   function getFilter(value) {
     setSortFilter(value);
@@ -18,12 +17,8 @@ export const Products = ({ getCardItems }) => {
     setData(books);
   }, []);
 
-  useEffect(() => {
-    getCardItems(addInCard);
-  }, [addInCard]);
-
   return (
-    <main className="bg-[#edecf3] h-full min-w-screen flex flex-col relative z-[2] rounded-t-[40px] py-4 gap-4 ">
+    <main className="bg-[#edecf3]  h-full min-w-screen flex flex-col relative z-[2] rounded-t-[40px] py-4 gap-4 ">
       <Sort getFilter={getFilter} />
       <div className="flex flex-row flex-wrap justify-around gap-6">
         {data
@@ -40,7 +35,7 @@ export const Products = ({ getCardItems }) => {
           .filter((book) => book.id <= page)
           .map((book) => (
             <Card
-              setAddInCard={setAddInCard}
+              setCartItems={setCartItems}
               key={book.id}
               id={book.id}
               title={book.title}

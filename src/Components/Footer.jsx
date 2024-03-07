@@ -1,6 +1,9 @@
 export const Footer = () => {
   return (
-    <footer className="relative z-[20] items-center min-w-screen gap-10 p-4  flex flex-col  justify-between bg-[#dddde3]">
+    <footer
+      id="footer"
+      className="relative z-[20] items-center min-w-screen gap-10 p-4  flex flex-col  justify-between bg-[#dddde3]"
+    >
       <h6 className="font-semibold">Контакты:</h6>
       <h6 className="text-2xl font-extralight">fesmiva@project.com</h6>
       <h6 className="font-light text-lg">

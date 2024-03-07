@@ -10,6 +10,21 @@ module.exports = {
         DEFAULT: "0 2px 4px var(--tw-shadow-color)",
         lg: "0 8px 16px var(--tw-shadow-color)",
       },
+      animation: {
+        appearance: "appearance 0.5s ease-in-out 1",
+        appearanceFast: "appearance 0.2s ease-in-out 1",
+      },
+      keyframes: {
+        appearance: {
+          "0%": {
+            opacity: 0,
+          },
+
+          "100%": {
+            opacity: 100,
+          },
+        },
+      },
     },
   },
   plugins: [
